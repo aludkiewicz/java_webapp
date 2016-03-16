@@ -17,6 +17,10 @@
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
 
+	<!-- Central dispatcher for HTTP request handlers/controllers, e.g. for 
+		web UI controllers or HTTP-based remote service exporters. Dispatches to 
+		registered handlers for processing a web request, providing convenient mapping 
+		and exception handling facilities. -->
 	<servlet>
 		<servlet-name>UI</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>

@@ -27,7 +27,7 @@ public class Album {
     }
 
 
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name="songs", joinColumns=@JoinColumn(name="album_id"))
     @Column(name="title")
     public List<String> getSongs() {
@@ -40,7 +40,7 @@ public class Album {
     }
     
     
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name="artists", joinColumns=@JoinColumn(name="album_id"))
     @Column(name="artist")
     public List<String> getArtists() {

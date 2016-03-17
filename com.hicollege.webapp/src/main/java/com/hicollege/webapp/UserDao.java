@@ -2,13 +2,14 @@ package com.hicollege.webapp;
 
 import java.util.List;
 
-import org.hibernate.Criteria;
+import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.hicollege.webapp.dtos.Album;
 import com.hicollege.webapp.dtos.User;
 
 @Repository
@@ -24,20 +25,28 @@ public class UserDao {
     public UserDao(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
     }
-    
-    @Transactional
-    public List<User> list() {
-        @SuppressWarnings("unchecked")
-        List<User> listUser = (List<User>) sessionFactory.getCurrentSession()
-                .createCriteria(User.class)
-                .setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).list();
- 
-        return listUser;
-    }
  
     @Transactional
     public void save(User user) {
         sessionFactory.getCurrentSession().save(user);
+    }
+    
+    @Transactional
+    public void saveAlbum(Album album) {
+        sessionFactory.getCurrentSession().save(album);
+    }
+    
+    @Transactional
+    public void saveObject(Object obj) {
+        sessionFactory.getCurrentSession().save(obj);
+    }
+    
+    @Transactional
+    public Album getAlbumByTitle(String title) {
+        Query query = sessionFactory.getCurrentSession().createQuery("from Album as album where album.title = :title");
+        query.setParameter("title", title);
+        List result = query.list();
+        return result.size() == 0 ? null : (Album) result.get(0);
     }
     
     @Transactional
@@ -49,6 +58,7 @@ public class UserDao {
                 .list();
         return listUser;
     }
+
  
 //    @Transactional
 //    public void delete(int id) {

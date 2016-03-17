@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:ng="http://angularjs.org" id="ng-app" ng-app="hicollege_webapp" class="no-js">
+ <meta charset="UTF-8"> 
+
+<head>
+
+<script src="/resources/js/angular.min.js"></script>
+<script src="/resources/js/bootstrap.min.js"></script>
+<script src="/resources/angular_controllers/controller.js"></script>
+<link href="/resources/css/bootstrap.min.css" rel="stylesheet" media="screen">
+</head>
+<body ng-controller="hicollege_ctrl">
+<div class="col-md-12">
+	<br>
+	<div class="col-md-6">
+	<h3 class="col-md-offset-3">Create a user:</h3>
+	<!-- User creation -->
+    	<div class="input-group col-md-6 col-md-offset-3">
+		  <span class="input-group-addon" id="basic-addon1">@</span>
+		  <input type="text" class="form-control" placeholder="Username" aria-describedby="basic-addon1" ng-model="username">
+		</div>
+		<br>
+		<div class="input-group col-md-6 col-md-offset-3">
+		  <span class="input-group-addon" id="basic-addon1">@</span>
+		  <input type="text" class="form-control" placeholder="Email" aria-describedby="basic-addon1" ng-model="email">
+		</div>
+		<br>
+		<div class="input-group col-md-6 col-md-offset-3">
+		  <span class="input-group-addon" id="basic-addon1">@</span>
+		  <input type="text" class="form-control" placeholder="Age" aria-describedby="basic-addon1" ng-model="age">
+		</div>
+		<br>
+		<div class="input-group col-md-6 col-md-offset-3">
+		  <span class="input-group-addon" id="basic-addon1">@</span>
+		  <input type="text" class="form-control" placeholder="Albums" aria-describedby="basic-addon1" ng-model="albums">
+		</div>
+		<br>
+		<div class="container center col-md-offset-3">
+			<button type="button" class="btn btn-success" ng-click="addUser(); getAllUsers()">Create user</button>
+    	</div>
+    	<br>
+    	<table class="table table-striped col-md-3 col-md-offset-3" style="max-width:400px">
+		   	<tbody >
+				<tr ng-repeat='usr in users'>
+			 		<td>{{usr.name}}</td> <td>{{usr.age}}</td> <td>{{usr.email}}</td> <td>{{usr.albums}}</td> 
+			 	</tr>
+			</tbody>
+		</table>
+	</div>
+	<div class="col-md-6">
+		<!-- Album creation -->
+		<h3>Create an album:</h3>
+		<br>
+		<div class="input-group col-md-6">
+		  <span class="input-group-addon" id="basic-addon1">@</span>
+		  <input type="text" class="form-control" placeholder="Title" aria-describedby="basic-addon1" ng-model="albumTitle">
+		</div>
+		<br>
+		<div class="input-group col-md-6">
+		  <span class="input-group-addon" id="basic-addon1">@</span>
+		  <input type="text" class="form-control" placeholder="Songs" aria-describedby="basic-addon1" ng-model="albumSongs">
+		</div>
+		<br>
+		<div class="input-group col-md-6">
+		  <span class="input-group-addon" id="basic-addon1">@</span>
+		  <input type="text" class="form-control" placeholder="Artists" aria-describedby="basic-addon1" ng-model="albumArtists">
+		</div>
+		<br>
+		<div class="container center">
+			<button type="button" class="btn btn-success" ng-click="addAlbum()">Create album</button>
+		</div>
+	</div>
+</div>
+<br>
+</body>
+</html>

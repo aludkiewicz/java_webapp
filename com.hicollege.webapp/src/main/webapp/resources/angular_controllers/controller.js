@@ -22,6 +22,24 @@ startApp.controller('hicollege_ctrl', function ($scope, $http, $log) {
         });
 	};
 	
+	$scope.addAlbum = function () {
+    	$http({
+        	method: 'PUT', 
+        	url: '/add/album',
+            params: {
+            	title: $scope.albumTitle,
+            	songs: $scope.albumSongs,
+            	artists: $scope.albumArtists
+            }
+    	}).
+        success(function (data, status, headers, config) {
+        	$scope.user = data;
+        }).
+        error(function (data, status, headers, config) {
+            $log.error(status);
+        });
+	};
+	
 	
 	$scope.getAllUsers = function () {
     	$http({

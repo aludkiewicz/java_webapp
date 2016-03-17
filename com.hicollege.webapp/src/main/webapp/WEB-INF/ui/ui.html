@@ -27,15 +27,11 @@
 		  <input type="text" class="form-control" placeholder="Age" aria-describedby="basic-addon1" ng-model="age">
 		</div>
 		<br>
-		<div class="input-group col-md-3 col-md-offset-2">
-		  <span class="input-group-addon" id="basic-addon1">@</span>
-		  <input type="text" class="form-control" placeholder="Albums" aria-describedby="basic-addon1" ng-model="albums">
-		</div>
-		<br>
 		<div class="container center col-md-offset-2">
 			<button type="button" class="btn btn-success" ng-click="addUser(); getAllUsers()">Create user</button>
     	</div>
-		<table class="table table-striped" style="max-width:400px">
+    	<br> 
+		<table class="table table-striped col-md-offset-2" style="max-width:400px">
     	<tbody >
 			<tr ng-repeat='usr in users'>
 			 	<td>{{usr.name}}</td> <td>{{usr.age}}</td> <td>{{usr.email}}</td> 

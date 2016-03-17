@@ -61,8 +61,8 @@ public class User {
     }
     
     
-    @OneToMany
-    @JoinColumn(name="id")
+    @ManyToOne(fetch = FetchType.EAGER) // Fix the many-to-one relationship here
+    @JoinColumn(name="user_id")
     public List<Album> getAlbums() {
         return albums;
     }

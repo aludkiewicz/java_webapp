@@ -1,7 +1,6 @@
 package com.hicollege.webapp;
 
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,40 +25,25 @@ public class UiController {
     
     @RequestMapping(value = "/ui", method = RequestMethod.GET)
     public String getUI() throws IOException {
-        User user = new User(1, "Alexander", "27", "alexander.ludkiewicz@hiq.se");
-        dao.saveOrUpdate(user);
         return "ui/ui";
     }
     
-    @RequestMapping(value = "/find/allusers", method = RequestMethod.GET)
+    @RequestMapping(value = "/get/allusers", method = RequestMethod.GET)
     @ResponseBody
     public List<User> getUsers() {
-        return Arrays.asList(new User(1, "Alexander", "27", "alexander.ludkiewicz@hiq.se"));
+        return dao.getAllUsers();
     }
     
-    @RequestMapping(value = "/find/user/{id}", method = RequestMethod.GET)
-    @ResponseBody
-    public List<User> getUser(@PathVariable int id) {
-        return Arrays.asList(new User(1, "Alexander", "27", "alexander.ludkiewicz@hiq.se"));
-    }
     
-    @RequestMapping(value = "/delete/user/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/add/user", method = RequestMethod.PUT)
     @ResponseBody
-    public List<User> deleteUser(@PathVariable int id) {
-        return Arrays.asList(new User(1, "Alexander", "27", "alexander.ludkiewicz@hiq.se"));
-    }
-    
-    @RequestMapping(value = "/create/user/", method = RequestMethod.GET)
-    @ResponseBody
-    public String createUser(
-        @RequestParam(value = "username", required = true)  String username,
-        @RequestParam(value = "age",      required = true)  int age,
-        @RequestParam(value = "email",    required = false) String email,
-        @RequestParam(value = "albums",   required = true)  List<String> albumNames) {
+    public void createUser(
+        @RequestParam(value = "username", required = true)   String username,
+        @RequestParam(value = "age",      required = true)   int age,
+        @RequestParam(value = "email",    required = true)   String email,
+        @RequestParam(value = "albums",   required = false)  List<String> albums) {
         
-        //User newUser = new User(id, name, age, email, albums)
-        
-        return "Derp";
+        User newUser = new User(username, Integer.toString(age), email);
+        dao.save(newUser);
     }
-
 }

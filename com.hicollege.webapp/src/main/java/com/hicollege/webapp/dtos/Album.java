@@ -2,35 +2,53 @@ package com.hicollege.webapp.dtos;
 
 import java.util.List;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "albums")
 public class Album {
     
-    private List<Song> songs;
-    private List<Artist> artists;
+    private int id;
+    private List<String> songs;
+    private List<String> artists;
     private String title;
     
     
-    public List<Song> getSongs() {
+    @Id
+    @GeneratedValue
+    @Column(name = "id")
+    public int getId() {
+        return id;
+    }
+
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+
+    @ElementCollection
+    @CollectionTable(name="songs", joinColumns=@JoinColumn(name="album_id"))
+    @Column(name="title")
+    public List<String> getSongs() {
         return songs;
     }
     
     
-    public void setSongs(List<Song> songs) {
+    public void setSongs(List<String> songs) {
         this.songs = songs;
     }
     
     
-    public List<Artist> getArtists() {
+    @ElementCollection
+    @CollectionTable(name="artists", joinColumns=@JoinColumn(name="album_id"))
+    @Column(name="artist")
+    public List<String> getArtists() {
         return artists;
     }
     
     
-    public void setArtists(List<Artist> artists) {
+    public void setArtists(List<String> artists) {
         this.artists = artists;
     }
     

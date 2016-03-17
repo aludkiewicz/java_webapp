@@ -36,8 +36,18 @@ public class UserDao {
     }
  
     @Transactional
-    public void saveOrUpdate(User user) {
+    public void save(User user) {
         sessionFactory.getCurrentSession().save(user);
+    }
+    
+    @Transactional
+    public List<User> getAllUsers() {
+        @SuppressWarnings("unchecked")
+        List<User> listUser = (List<User>) sessionFactory
+                .getCurrentSession()
+                .createQuery("from User")
+                .list();
+        return listUser;
     }
  
 //    @Transactional

@@ -1,19 +1,22 @@
 package com.hicollege.webapp.dtos;
 
+import java.util.List;
+
 import javax.persistence.*;
 
 @Entity
-@Table(name = "users")
+@Table(name = "users", uniqueConstraints= @UniqueConstraint(columnNames = {"name"}))
 public class User {
     
     private int id;
     private String name;
     private String age;
     private String email;
-//    private List<Album> albums;
+    private List<Album> albums;
     
-    public User(int id, String name, String age, String email) {
-        this.id = id;
+    public User() {}
+    
+    public User(String name, String age, String email) {
         this.name = name;
         this.age = age;
         this.email = email;
@@ -30,7 +33,7 @@ public class User {
         this.id = id;
     }
     
-    @Column(name = "name")
+    @Column(name = "name", unique = true)
     public String getName() {
         return name;
     }
@@ -56,13 +59,16 @@ public class User {
     public void setEmail(String email) {
         this.email = email;
     }
+    
+    
+    @OneToMany
+    @JoinColumn(name="id")
+    public List<Album> getAlbums() {
+        return albums;
+    }
 
-//    public List<Album> getAlbums() {
-//        return albums;
-//    }
-//
-//    public void setAlbums(List<Album> albums) {
-//        this.albums = albums;
-//    }
+    public void setAlbums(List<Album> albums) {
+        this.albums = albums;
+    }
 
 }

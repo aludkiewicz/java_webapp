@@ -10,13 +10,38 @@
 <script src="/resources/angular_controllers/controller.js"></script>
 <link href="/resources/css/bootstrap.min.css" rel="stylesheet" media="screen">
 </head>
-<body>
-    	<div class="container center" ng-controller="hicollege_ctrl">
-			<button type="button" class="btn btn-success" ng-click="findUserById()">Get user</button>
-    		{{user}}
+<body ng-controller="hicollege_ctrl">
+		<br>
+    	<div class="input-group col-md-3 col-md-offset-2">
+		  <span class="input-group-addon" id="basic-addon1">@</span>
+		  <input type="text" class="form-control" placeholder="Username" aria-describedby="basic-addon1" ng-model="username">
+		</div>
+		<br>
+		<div class="input-group col-md-3 col-md-offset-2">
+		  <span class="input-group-addon" id="basic-addon1">@</span>
+		  <input type="text" class="form-control" placeholder="Email" aria-describedby="basic-addon1" ng-model="email">
+		</div>
+		<br>
+		<div class="input-group col-md-3 col-md-offset-2">
+		  <span class="input-group-addon" id="basic-addon1">@</span>
+		  <input type="text" class="form-control" placeholder="Age" aria-describedby="basic-addon1" ng-model="age">
+		</div>
+		<br>
+		<div class="input-group col-md-3 col-md-offset-2">
+		  <span class="input-group-addon" id="basic-addon1">@</span>
+		  <input type="text" class="form-control" placeholder="Albums" aria-describedby="basic-addon1" ng-model="albums">
+		</div>
+		<br>
+		<div class="container center col-md-offset-2">
+			<button type="button" class="btn btn-success" ng-click="addUser(); getAllUsers()">Create user</button>
     	</div>
-    	
-    	
-
+		<table class="table table-striped" style="max-width:400px">
+    	<tbody >
+			<tr ng-repeat='usr in users'>
+			 	<td>{{usr.name}}</td> <td>{{usr.age}}</td> <td>{{usr.email}}</td> 
+			 </tr>
+		</tbody>
+		</table>
+		<br>
 </body>
 </html>

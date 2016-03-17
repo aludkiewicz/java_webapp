@@ -16,5 +16,6 @@
     
     <!-- Define which classes we want Hibernate to manage -->
     <mapping class="com.hicollege.webapp.dtos.User"/>
+    <mapping class="com.hicollege.webapp.dtos.Album"/>
   </session-factory>
 </hibernate-configuration>

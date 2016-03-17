@@ -17,17 +17,26 @@
 	<mvc:resources mapping="/resources/**" location="/resources/" />
 
 	<mvc:annotation-driven />
-
-	<context:component-scan base-package="com.hicollege" /> <!-- What package to use as a base when scanning for components to autowire -->
-
-	<context:property-placeholder location="classpath:hiq.properties" /> <!-- Autowirable properties are loaded from this file -->
-
+	
+	
+	<!-- What package to use as a base when scanning for components to autowire -->
+	<context:component-scan base-package="com.hicollege" />
+	
+	
+	<!-- Autowirable properties are loaded from this file -->
+	<context:property-placeholder location="classpath:hiq.properties" />
+	
+	
+	<!-- Tells spring where to look for .html files when it tries to resolve an incoming web page request-->
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/WEB-INF/" />
 		<property name="suffix" value=".html" />
 	</bean>
 	
+	
+	<!-- This is the Spring definition of our data source: We are using an open source version from Apache
+		 Basically tells the app how to access the DB -->
 	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource"
 		destroy-method="close">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
@@ -35,12 +44,22 @@
 		<property name="username" value="root" />
 		<property name="password" value="" />
 	</bean>
-
+	
+	
+	<!-- This tells the ap how to deal with sessions. We want to be able to have stuff like transaction management between thread and such. 
+		 And that requires sessions -->
 	<bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
+		    <property name="packagesToScan">
+        <list>
+            <value>annotations</value>
+        </list>
+    </property>
 		<property name="configLocation" value="classpath:hibernate.cfg.xml" />
 	</bean>
-
+	
+	
+	<!-- Gives the app support for transactions -->
 	<tx:annotation-driven />
 	<bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
 		<property name="sessionFactory" ref="sessionFactory" />

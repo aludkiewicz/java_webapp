@@ -37,7 +37,7 @@ public class UserDao {
  
     @Transactional
     public void saveOrUpdate(User user) {
-        sessionFactory.getCurrentSession().saveOrUpdate(user);
+        sessionFactory.getCurrentSession().save(user);
     }
  
 //    @Transactional

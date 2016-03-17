@@ -38,7 +38,8 @@
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
 
-
+	
+	<!-- For the Hello World default page :) -->
 	<servlet-mapping>
 		<servlet-name>jsp</servlet-name>
 		<url-pattern>/WEB-INF/*</url-pattern>

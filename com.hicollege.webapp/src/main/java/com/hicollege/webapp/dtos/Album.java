@@ -2,6 +2,12 @@ package com.hicollege.webapp.dtos;
 
 import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "albums")
 public class Album {
     
     private List<Song> songs;
@@ -28,7 +34,7 @@ public class Album {
         this.artists = artists;
     }
     
-    
+    @Column(name = "title")
     public String getTitle() {
         return title;
     }

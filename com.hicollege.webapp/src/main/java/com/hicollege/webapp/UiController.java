@@ -1,7 +1,6 @@
 package com.hicollege.webapp;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -27,7 +26,7 @@ public class UiController {
     
     @RequestMapping(value = "/ui", method = RequestMethod.GET)
     public String getUI() throws IOException {
-        User user = new User(1, "Alexander", "27", "alexander.ludkiewicz@hiq.se", new ArrayList<>());
+        User user = new User(1, "Alexander", "27", "alexander.ludkiewicz@hiq.se");
         dao.saveOrUpdate(user);
         return "ui/ui";
     }
@@ -35,19 +34,19 @@ public class UiController {
     @RequestMapping(value = "/find/allusers", method = RequestMethod.GET)
     @ResponseBody
     public List<User> getUsers() {
-        return Arrays.asList(new User(1, "Alexander", "27", "alexander.ludkiewicz@hiq.se", new ArrayList<>()));
+        return Arrays.asList(new User(1, "Alexander", "27", "alexander.ludkiewicz@hiq.se"));
     }
     
     @RequestMapping(value = "/find/user/{id}", method = RequestMethod.GET)
     @ResponseBody
     public List<User> getUser(@PathVariable int id) {
-        return Arrays.asList(new User(id, "Alexander", "27", "alexander.ludkiewicz@hiq.se", new ArrayList<>()));
+        return Arrays.asList(new User(1, "Alexander", "27", "alexander.ludkiewicz@hiq.se"));
     }
     
     @RequestMapping(value = "/delete/user/{id}", method = RequestMethod.DELETE)
     @ResponseBody
     public List<User> deleteUser(@PathVariable int id) {
-        return Arrays.asList(new User(id, "Alexander", "27", "alexander.ludkiewicz@hiq.se", new ArrayList<>()));
+        return Arrays.asList(new User(1, "Alexander", "27", "alexander.ludkiewicz@hiq.se"));
     }
     
     @RequestMapping(value = "/create/user/", method = RequestMethod.GET)

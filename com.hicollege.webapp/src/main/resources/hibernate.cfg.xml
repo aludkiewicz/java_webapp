@@ -11,7 +11,10 @@
     <!-- Print executed SQL statements to stdout -->
     <property name="show_sql">true</property> 
     
-    <!-- Drop and recreate database on restart -->
+    <!-- Update the DB schema on restart of session -->
     <property name="hbm2ddl.auto">update</property>
+    
+    <!-- Define which classes we want Hibernate to manage -->
+    <mapping class="com.hicollege.webapp.dtos.User"/>
   </session-factory>
-</hibernate-configuration>	
+</hibernate-configuration>

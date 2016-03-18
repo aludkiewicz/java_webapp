@@ -50,6 +50,15 @@ public class UserDao {
     }
     
     @Transactional
+    public User getUserByName(String username) {
+        Query query = sessionFactory.getCurrentSession().createQuery("from User as usr where usr.name = :username");
+        query.setParameter("username", username);
+        List result = query.list();
+        return result.size() == 0 ? null : (User) result.get(0);
+    }
+    
+    
+    @Transactional
     public List<User> getAllUsers() {
         @SuppressWarnings("unchecked")
         List<User> listUser = (List<User>) sessionFactory

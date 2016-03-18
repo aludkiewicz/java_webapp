@@ -44,7 +44,7 @@ startApp.controller('hicollege_ctrl', function ($scope, $http, $log) {
 	$scope.getAllUsers = function () {
     	$http({
         	method: 'GET', 
-        	url: '/get/allusers',
+        	url: '/find/allusers',
             params: {
             	username: $scope.username,
             	email: $scope.email,

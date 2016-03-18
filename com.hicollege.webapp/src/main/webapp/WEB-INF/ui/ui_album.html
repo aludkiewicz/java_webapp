@@ -33,7 +33,7 @@
 		<br>
 		<div class="input-group col-md-6 col-md-offset-3">
 		  <span class="input-group-addon" id="basic-addon1">@</span>
-		  <input type="text" class="form-control" placeholder="Albums" aria-describedby="basic-addon1" ng-model="albums">
+		  <input type="text" class="form-control" placeholder="Albums" aria-describedby="basic-addon1" ng-model="user_albums">
 		</div>
 		<br>
 		<div class="container center col-md-offset-3">
@@ -42,6 +42,7 @@
     	<br>
     	<table class="table table-striped col-md-3 col-md-offset-3" style="max-width:400px">
 		   	<tbody >
+		 		<td>Username</td> <td>Age</td> <td>Email</td> <td>Albums</td> 
 				<tr ng-repeat='usr in users'>
 			 		<td>{{usr.name}}</td> <td>{{usr.age}}</td> <td>{{usr.email}}</td> <td>{{usr.albums}}</td> 
 			 	</tr>
@@ -68,8 +69,17 @@
 		</div>
 		<br>
 		<div class="container center">
-			<button type="button" class="btn btn-success" ng-click="addAlbum()">Create album</button>
+			<button type="button" class="btn btn-success" ng-click="addAlbum(); getAllAlbums()">Create album</button>
 		</div>
+		<br>
+    	<table class="table table-striped col-md-3" style="max-width:400px">
+		   	<tbody >
+		 		<td>Title</td> <td>Songs</td> <td>Artists</td> 
+				<tr ng-repeat='album in albums'>
+			 		<td>{{album.title}}</td> <td>{{album.songs}}</td> <td>{{album.artists}}</td> 
+			 	</tr>
+			</tbody>
+		</table>
 	</div>
 </div>
 <br>

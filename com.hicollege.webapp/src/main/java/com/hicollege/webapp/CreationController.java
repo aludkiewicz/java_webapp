@@ -1,7 +1,8 @@
 package com.hicollege.webapp;
 
-import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -26,14 +27,16 @@ public class CreationController {
         
         User newUser = new User(username, Integer.toString(age), email);
         
-        List<Album> userAlbums = new ArrayList<>();
-        for(String title : albums) {
-            Album album = dao.getAlbumByTitle(title);
-            if(album != null) {
-                userAlbums.add(album);
+        if(albums != null) {
+            Set<Album> userAlbums = new HashSet<>();
+            for(String title : albums) {
+                Album album = dao.getAlbumByTitle(title);
+                if(album != null) {
+                    userAlbums.add(album);
+                }
             }
+            newUser.setAlbums(userAlbums);
         }
-        newUser.setAlbums(userAlbums);
         dao.save(newUser);
     }
     

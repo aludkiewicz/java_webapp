@@ -1,8 +1,12 @@
 package com.hicollege.webapp.dtos;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "albums")
@@ -12,11 +16,12 @@ public class Album {
     private List<String> songs;
     private List<String> artists;
     private String title;
-    
-    
+    private Set<User> users = new HashSet<>();;
+
+
     @Id
     @GeneratedValue
-    @Column(name = "id")
+    @Column(name = "album_id")
     public int getId() {
         return id;
     }
@@ -60,6 +65,18 @@ public class Album {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+    
+    
+    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "albums")
+    @JsonIgnore
+    public Set<User> getUsers() {
+        return users;
+    }
+
+
+    public void setUsers(Set<User> users) {
+        this.users = users;
     }
 
 

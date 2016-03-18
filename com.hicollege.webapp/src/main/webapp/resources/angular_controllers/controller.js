@@ -11,7 +11,7 @@ startApp.controller('hicollege_ctrl', function ($scope, $http, $log) {
             	username: $scope.username,
             	email: $scope.email,
             	age: $scope.age,
-            	albums: $scope.albums
+            	albums: $scope.user_albums
             }
     	}).
         success(function (data, status, headers, config) {
@@ -44,16 +44,24 @@ startApp.controller('hicollege_ctrl', function ($scope, $http, $log) {
 	$scope.getAllUsers = function () {
     	$http({
         	method: 'GET', 
-        	url: '/find/allusers',
-            params: {
-            	username: $scope.username,
-            	email: $scope.email,
-            	age: $scope.age
-            }
+        	url: '/find/allusers'
     	}).
         success(function (data, status, headers, config) {
         	$scope.users = data;
-        	console.log($scope.users);
+        }).
+        error(function (data, status, headers, config) {
+            $log.error(status);
+        });
+	};
+	
+	
+	$scope.getAllAlbums = function () {
+    	$http({
+        	method: 'GET', 
+        	url: '/find/allalbums'
+    	}).
+        success(function (data, status, headers, config) {
+        	$scope.albums = data;
         }).
         error(function (data, status, headers, config) {
             $log.error(status);

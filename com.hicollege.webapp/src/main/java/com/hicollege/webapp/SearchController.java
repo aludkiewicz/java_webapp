@@ -16,19 +16,22 @@ public class SearchController {
     private UserDao dao;
     
     @RequestMapping(value = "/allusers", method = RequestMethod.GET)
-    @ResponseBody
     public List<User> getUsers() {
         return dao.getAllUsers();
     }
     
+    @RequestMapping(value = "/allalbums", method = RequestMethod.GET)
+    public List<Album> getAlbums() {
+        return dao.getAllAlbums();
+    }
+    
+    
     @RequestMapping(value = "/album/{title}", method = RequestMethod.GET)
-    @ResponseBody
     public Album findAlbum(@PathVariable String title) {
         return dao.getAlbumByTitle(title);
     }
     
     @RequestMapping(value = "/user/{username}", method = RequestMethod.GET)
-    @ResponseBody
     public User findUser(@PathVariable String username) {
         return dao.getUserByName(username);
     }

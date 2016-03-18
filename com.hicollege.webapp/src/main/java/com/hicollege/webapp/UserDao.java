@@ -61,11 +61,21 @@ public class UserDao {
     @Transactional
     public List<User> getAllUsers() {
         @SuppressWarnings("unchecked")
-        List<User> listUser = (List<User>) sessionFactory
+        List<User> allAlbums = (List<User>) sessionFactory
                 .getCurrentSession()
                 .createQuery("from User")
                 .list();
-        return listUser;
+        return allAlbums;
+    }
+    
+    @Transactional
+    public List<Album> getAllAlbums() {
+        @SuppressWarnings("unchecked")
+        List<Album> allAlbums = (List<Album>) sessionFactory
+                .getCurrentSession()
+                .createQuery("from Album")
+                .list();
+        return allAlbums;
     }
 
  

@@ -34,7 +34,7 @@ public class Album {
 
     @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name="songs", joinColumns=@JoinColumn(name="album_id"))
-    @Column(name="title")
+    @Column(name="songs")
     public List<String> getSongs() {
         return songs;
     }

@@ -37,7 +37,8 @@
 		</div>
 		<br>
 		<div class="container center col-md-offset-3">
-			<button type="button" class="btn btn-success" ng-click="addUser(); getAllUsers()">Create user</button>
+			<button type="button" class="btn btn-success" ng-click="addUser()">Create user</button>
+			<button type="button" class="btn btn-success" ng-click="getAllUsers()">Update list</button>
     	</div>
     	<br>
     	<table class="table table-striped col-md-3 col-md-offset-3" style="max-width:400px">
@@ -69,14 +70,15 @@
 		</div>
 		<br>
 		<div class="container center">
-			<button type="button" class="btn btn-success" ng-click="addAlbum(); getAllAlbums()">Create album</button>
+			<button type="button" class="btn btn-success" ng-click="addAlbum()">Create album</button>
+			<button type="button" class="btn btn-success" ng-click="getAllAlbums()">Update list</button>
 		</div>
 		<br>
     	<table class="table table-striped col-md-3" style="max-width:400px">
 		   	<tbody >
 		 		<td>Title</td> <td>Songs</td> <td>Artists</td> 
 				<tr ng-repeat='album in albums'>
-			 		<td>{{album.title}}</td> <td>{{album.songs}}</td> <td>{{album.artists}}</td> 
+			 		<td>{{album.title}}</td> <td>{{album.songs}}</td> <td>{{album.artists}}</td>
 			 	</tr>
 			</tbody>
 		</table>

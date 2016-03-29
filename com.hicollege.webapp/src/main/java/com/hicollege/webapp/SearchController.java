@@ -13,7 +13,7 @@ import com.hicollege.webapp.dtos.User;
 public class SearchController {
 
     @Autowired
-    private UserDao dao;
+    private Dao dao;
     
     @RequestMapping(value = "/allusers", method = RequestMethod.GET)
     public List<User> getUsers() {

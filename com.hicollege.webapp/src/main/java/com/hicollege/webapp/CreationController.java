@@ -15,7 +15,7 @@ import com.hicollege.webapp.dtos.User;
 public class CreationController {
     
     @Autowired
-    private UserDao dao;
+    private Dao dao;
     
     @RequestMapping(value = "/user", method = RequestMethod.PUT)
     @ResponseBody
@@ -54,5 +54,15 @@ public class CreationController {
         album.setTitle(title);
 
         dao.saveAlbum(album);
+    }
+    
+    @RequestMapping(value = "/delete/{name}", method = RequestMethod.GET)
+    public void deleteUserByName(@PathVariable(value = "name") String username) {
+        dao.deleteUserByName(username);
+    }
+    
+    @RequestMapping(value = "/delete/album/{name}", method = RequestMethod.GET)
+    public void deleteAlbumByName(@PathVariable(value = "name") String title) {
+        dao.deleteAlbumByName(title);
     }
 }

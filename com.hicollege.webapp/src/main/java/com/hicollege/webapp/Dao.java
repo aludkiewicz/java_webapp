@@ -14,15 +14,15 @@ import com.hicollege.webapp.dtos.User;
 
 @Repository
 @Component
-public class UserDao {
+public class Dao {
     
     @Autowired
     private SessionFactory sessionFactory;
     
-    public UserDao() {
+    public Dao() {
     }
  
-    public UserDao(SessionFactory sessionFactory) {
+    public Dao(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
     }
  
@@ -76,6 +76,16 @@ public class UserDao {
                 .createQuery("from Album")
                 .list();
         return allAlbums;
+    }
+    
+    @Transactional
+    public void deleteUserByName(String name) {
+        sessionFactory.getCurrentSession().delete(getUserByName(name));
+    }
+    
+    @Transactional
+    public void deleteAlbumByName(String title) {
+        sessionFactory.getCurrentSession().delete(getAlbumByTitle(title));
     }
 
  

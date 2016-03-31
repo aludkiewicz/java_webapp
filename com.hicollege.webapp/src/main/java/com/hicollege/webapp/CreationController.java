@@ -53,16 +53,6 @@ public class CreationController {
         album.setSongs(songs);
         album.setTitle(title);
 
-        dao.saveAlbum(album);
-    }
-    
-    @RequestMapping(value = "/delete/{name}", method = RequestMethod.GET)
-    public void deleteUserByName(@PathVariable(value = "name") String username) {
-        dao.deleteUserByName(username);
-    }
-    
-    @RequestMapping(value = "/delete/album/{name}", method = RequestMethod.GET)
-    public void deleteAlbumByName(@PathVariable(value = "name") String title) {
-        dao.deleteAlbumByName(title);
+        dao.save(album);
     }
 }

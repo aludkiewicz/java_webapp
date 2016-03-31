@@ -1,6 +1,7 @@
 package com.hicollege.webapp;
 
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -31,9 +32,19 @@ public class SearchController {
         return dao.getAlbumByTitle(title);
     }
     
-    @RequestMapping(value = "/user/{username}", method = RequestMethod.GET)
+    @RequestMapping(value = "/users/{username}", method = RequestMethod.GET)
     public User findUser(@PathVariable String username) {
         return dao.getUserByName(username);
     }
     
+    @RequestMapping(value = "/users/{name}/albums")
+    public Set<Album> findAlbumsForUser(@PathVariable(value = "name") String username) {
+        User user = dao.getUserByName(username);
+        return user.getAlbums();
+    }
+    
+    @RequestMapping(value = "/albums/{title}/users")
+    public Set<User> findUsersForAlbum(@PathVariable(value = "title") String title) {
+        return dao.getAlbumByTitle(title).getUsers();
+    }
 }

@@ -25,20 +25,29 @@ public class Dao {
     public Dao(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
     }
- 
+    
     @Transactional
-    public void save(User user) {
-        sessionFactory.getCurrentSession().save(user);
+    public void saveBatch(Object... objs) {
+        for(Object obj : objs) {
+            sessionFactory.getCurrentSession().save(obj);
+        }
     }
     
     @Transactional
-    public void saveAlbum(Album album) {
-        sessionFactory.getCurrentSession().save(album);
+    public void updateBatch(Object... objs) {
+        for(Object obj : objs) {
+            sessionFactory.getCurrentSession().update(obj);
+        }
     }
     
     @Transactional
-    public void saveObject(Object obj) {
-        sessionFactory.getCurrentSession().save(obj);
+    public void save(Object obj) {
+        saveBatch(obj);
+    }
+    
+    @Transactional
+    public void update(Object obj) {
+        updateBatch(obj);
     }
     
     @Transactional
@@ -87,27 +96,4 @@ public class Dao {
     public void deleteAlbumByName(String title) {
         sessionFactory.getCurrentSession().delete(getAlbumByTitle(title));
     }
-
- 
-//    @Transactional
-//    public void delete(int id) {
-//        User userToDelete = new User();
-//        userToDelete.setId(id);
-//        sessionFactory.getCurrentSession().delete(userToDelete);
-//    }
-// 
-//    @Transactional
-//    public User get(int id) {
-//        String hql = "from User where id=" + id;
-//        Query query = sessionFactory.getCurrentSession().createQuery(hql);
-//         
-//        @SuppressWarnings("unchecked")
-//        List<User> listUser = (List<User>) query.list();
-//         
-//        if (listUser != null && !listUser.isEmpty()) {
-//            return listUser.get(0);
-//        }
-//         
-//        return null;
-//    }
 }

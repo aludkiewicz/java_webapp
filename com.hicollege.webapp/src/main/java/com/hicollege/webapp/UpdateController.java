@@ -1,16 +1,16 @@
 package com.hicollege.webapp;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.hicollege.webapp.dtos.Album;
 import com.hicollege.webapp.dtos.User;
 
 @RequestMapping(value = "/update")
-@Controller
+@RestController
 public class UpdateController {
     
     @Autowired
@@ -20,12 +20,12 @@ public class UpdateController {
     public void updateUser(
         @PathVariable(value = "name") String username,
         @RequestParam(value = "email", required = false) String email,
-        @RequestParam(value = "age", required = false) int age) {
+        @RequestParam(value = "age", required = false) Integer age) {
         
         User user = dao.getUserByName(username);
         user.setAge(Integer.toString(age));
         user.setEmail(email);
-        dao.updateBatch(user);
+        dao.update(user);
     }
     
     @RequestMapping(value = "/users/{name}/add/albums/{title}")
@@ -38,8 +38,8 @@ public class UpdateController {
         album.getUsers().add(user);
         user.getAlbums().add(album);
         
-        dao.updateBatch(user);
-        dao.updateBatch(album);
+        dao.merge(album);
+        dao.merge(user);
         
     }
 }

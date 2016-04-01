@@ -67,4 +67,28 @@ startApp.controller('hicollege_ctrl', function ($scope, $http, $log) {
             $log.error(status);
         });
 	};
+	
+	$scope.deleteAlbum = function (title) {
+    	$http({
+        	method: 'DELETE', 
+        	url: '/delete/albums/' + title
+    	}).
+        success(function (data, status, headers, config) {
+        }).
+        error(function (data, status, headers, config) {
+            $log.error(status);
+        });
+	};
+	
+	$scope.deleteUser = function (name) {
+    	$http({
+        	method: 'DELETE', 
+        	url: '/delete/users/' + name
+    	}).
+        success(function (data, status, headers, config) {
+        }).
+        error(function (data, status, headers, config) {
+            $log.error(status);
+        });
+	};
 });

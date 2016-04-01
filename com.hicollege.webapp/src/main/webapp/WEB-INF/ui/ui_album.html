@@ -43,9 +43,9 @@
     	<br>
     	<table class="table table-striped col-md-3 col-md-offset-3" style="max-width:400px">
 		   	<tbody >
-		 		<td>Username</td> <td>Age</td> <td>Email</td> <td>Albums</td> 
+		 		<td>Username</td> <td>Age</td> <td>Email</td> <td>Albums</td> <td> </td>
 				<tr ng-repeat='usr in users'>
-			 		<td>{{usr.name}}</td> <td>{{usr.age}}</td> <td>{{usr.email}}</td> <td>{{usr.albums}}</td> 
+			 		<td>{{usr.name}}</td> <td>{{usr.age}}</td> <td>{{usr.email}}</td> <td>{{usr.albums}}</td> <td> <button type="button" class="btn btn-danger" ng-click="deleteUser(usr.name)"> Delete user </button> </td>
 			 	</tr>
 			</tbody>
 		</table>
@@ -76,9 +76,9 @@
 		<br>
     	<table class="table table-striped col-md-3" style="max-width:400px">
 		   	<tbody >
-		 		<td>Title</td> <td>Songs</td> <td>Artists</td> 
+		 		<td>Title</td> <td>Songs</td> <td>Artists</td> <td> </td>
 				<tr ng-repeat='album in albums'>
-			 		<td>{{album.title}}</td> <td>{{album.songs}}</td> <td>{{album.artists}}</td>
+			 		<td>{{album.title}}</td> <td>{{album.songs}}</td> <td>{{album.artists}}</td> <td> <button type="button" class="btn btn-danger" ng-click="deleteAlbum(album.title)"> Delete album </button> </td>
 			 	</tr>
 			</tbody>
 		</table>

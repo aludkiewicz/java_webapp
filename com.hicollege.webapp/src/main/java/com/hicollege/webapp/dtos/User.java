@@ -62,7 +62,7 @@ public class User {
         this.email = email;
     }
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
     @JoinTable(name = "user_album_join", catalog = "hicollege", joinColumns = {
     @JoinColumn(name = "user_id", nullable = false, updatable = false) }, 
     inverseJoinColumns = {@JoinColumn(name = "album_id", nullable = false, updatable = false) })

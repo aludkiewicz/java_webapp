@@ -51,6 +51,18 @@ public class Dao {
     }
     
     @Transactional
+    public void mergeBatch(Object... objs) {
+        for(Object obj : objs) {
+            sessionFactory.getCurrentSession().merge(obj);
+        }
+    }
+    
+    @Transactional
+    public void merge(Object obj) {
+        mergeBatch(obj);
+    }
+    
+    @Transactional
     public Album getAlbumByTitle(String title) {
         Query query = sessionFactory.getCurrentSession().createQuery("from Album as album where album.title = :title");
         query.setParameter("title", title);
@@ -94,6 +106,16 @@ public class Dao {
     
     @Transactional
     public void deleteAlbumByName(String title) {
-        sessionFactory.getCurrentSession().delete(getAlbumByTitle(title));
+        Album album = getAlbumByTitle(title);
+        
+        /*
+         * Need to detach the album from all users first, to maintain data integrity
+         */
+        for(User user : album.getUsers()) {
+            user.getAlbums().remove(album);
+            update(user);
+        }
+        
+        sessionFactory.getCurrentSession().delete(album);
     }
 }

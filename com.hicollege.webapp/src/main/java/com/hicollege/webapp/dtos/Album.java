@@ -68,7 +68,7 @@ public class Album {
     }
     
     
-    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "albums", cascade = CascadeType.REFRESH)
+    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "albums", cascade = CascadeType.PERSIST)
     @JsonIgnore
     public Set<User> getUsers() {
         return users;

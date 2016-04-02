@@ -7,20 +7,15 @@
 
 <script src="/resources/js/angular.min.js"></script>
 <script src="/resources/js/bootstrap.min.js"></script>
-<script src="/resources/angular_controllers/controller.js"></script>
+<script src="/resources/angular_controllers/main.js"></script>
+<script src="/resources/angular_controllers/albumController.js"></script>
+<script src="/resources/angular_controllers/userController.js"></script>
 <link href="/resources/css/bootstrap.min.css" rel="stylesheet" media="screen">
 </head>
-<body ng-controller="hicollege_ctrl">
+<body>
+<div class="col-md-12" >
 	<br>
-	<div class="alert alert-success col-md-2 col-md-offset-4" ng-show="displaySuccess">
-	  {{status.message}}
-	</div>
-	<div class="alert alert-danger col-md-2 col-md-offset-4" ng-show="displayFail">
-	  {{status.message}}
-	</div>
-<div class="col-md-12">
-	<br>
-	<div class="col-md-6">
+	<div class="col-md-6" ng-controller="user_ctrl">
 	<h3 class="col-md-offset-3">Create a user:</h3>
 	<!-- User creation -->
     	<div class="input-group col-md-6 col-md-offset-3">
@@ -56,8 +51,15 @@
 			 	</tr>
 			</tbody>
 		</table>
+		<br>
+		<div class="alert alert-success col-md-4 col-md-offset-4" ng-show="displaySuccess">
+		  {{status.message}}
+		</div>
+		<div class="alert alert-danger col-md-4 col-md-offset-4" ng-show="displayFail">
+		  {{status.message}}
+		</div>
 	</div>
-	<div class="col-md-6">
+	<div class="col-md-6" ng-controller="album_ctrl">
 		<!-- Album creation -->
 		<h3>Create an album:</h3>
 		<br>
@@ -89,6 +91,12 @@
 			 	</tr>
 			</tbody>
 		</table>
+		<div class="alert alert-success col-md-4 col-md-offset-2" ng-show="displaySuccess">
+		  {{status.message}}
+		</div>
+		<div class="alert alert-danger col-md-4 col-md-offset-2" ng-show="displayFail">
+		  {{status.message}}
+		</div>
 	</div>
 </div>
 <br>

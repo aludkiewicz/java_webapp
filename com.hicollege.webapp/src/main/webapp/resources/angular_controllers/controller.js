@@ -1,7 +1,9 @@
 var startApp = angular.module('hicollege_webapp', []);
 
-
 startApp.controller('hicollege_ctrl', function ($scope, $http, $log) {
+	
+	$scope.displaySuccess = false;
+	$scope.displayFail = false;
 	
 	$scope.addUser = function () {
     	$http({
@@ -15,7 +17,48 @@ startApp.controller('hicollege_ctrl', function ($scope, $http, $log) {
             }
     	}).
         success(function (data, status, headers, config) {
-        	$scope.user = data;
+        	$scope.status = data;
+        	if(data.statusCode == 'OK'){
+        		$scope.displaySuccess = true;
+        		$scope.displayFail = false;
+        	} else {
+        		$scope.displaySuccess = false;
+        		$scope.displayFail = true;
+        	}
+        	
+        }).
+        error(function (data, status, headers, config) {
+        	$log.error(status);
+        });
+	};
+	
+	$scope.deleteUser = function (name) {
+    	$http({
+        	method: 'DELETE', 
+        	url: '/delete/users/' + name
+    	}).
+        success(function (data, status, headers, config) {
+        	$scope.status = data;
+        	if(data.statusCode == 'OK'){
+        		$scope.displaySuccess = true;
+        		$scope.displayFail = false;
+        	} else {
+        		$scope.displaySuccess = false;
+        		$scope.displayFail = true;
+        	}
+        }).
+        error(function (data, status, headers, config) {
+            $log.error(status);
+        });
+	};
+	
+	$scope.getAllUsers = function () {
+    	$http({
+        	method: 'GET', 
+        	url: '/find/users'
+    	}).
+        success(function (data, status, headers, config) {
+       		$scope.users = data;
         }).
         error(function (data, status, headers, config) {
             $log.error(status);
@@ -33,21 +76,14 @@ startApp.controller('hicollege_ctrl', function ($scope, $http, $log) {
             }
     	}).
         success(function (data, status, headers, config) {
-        	$scope.user = data;
-        }).
-        error(function (data, status, headers, config) {
-            $log.error(status);
-        });
-	};
-	
-	
-	$scope.getAllUsers = function () {
-    	$http({
-        	method: 'GET', 
-        	url: '/find/allusers'
-    	}).
-        success(function (data, status, headers, config) {
-        	$scope.users = data;
+        	$scope.status = data;
+        	if(data.statusCode == 'OK'){
+        		$scope.displaySuccess = true;
+        		$scope.displayFail = false;
+        	} else {
+        		$scope.displaySuccess = false;
+        		$scope.displayFail = true;
+        	}
         }).
         error(function (data, status, headers, config) {
             $log.error(status);
@@ -58,7 +94,7 @@ startApp.controller('hicollege_ctrl', function ($scope, $http, $log) {
 	$scope.getAllAlbums = function () {
     	$http({
         	method: 'GET', 
-        	url: '/find/allalbums'
+        	url: '/find/albums'
     	}).
         success(function (data, status, headers, config) {
         	$scope.albums = data;
@@ -74,18 +110,14 @@ startApp.controller('hicollege_ctrl', function ($scope, $http, $log) {
         	url: '/delete/albums/' + title
     	}).
         success(function (data, status, headers, config) {
-        }).
-        error(function (data, status, headers, config) {
-            $log.error(status);
-        });
-	};
-	
-	$scope.deleteUser = function (name) {
-    	$http({
-        	method: 'DELETE', 
-        	url: '/delete/users/' + name
-    	}).
-        success(function (data, status, headers, config) {
+        	$scope.status = data;
+        	if(data.statusCode == 'OK'){
+        		$scope.displaySuccess = true;
+        		$scope.displayFail = false;
+        	} else {
+        		$scope.displaySuccess = false;
+        		$scope.displayFail = true;
+        	}
         }).
         error(function (data, status, headers, config) {
             $log.error(status);

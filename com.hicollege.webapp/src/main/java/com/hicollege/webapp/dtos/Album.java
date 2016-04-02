@@ -9,7 +9,7 @@ import javax.persistence.*;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-@Table(name = "albums")
+@Table(name = "albums", uniqueConstraints = @UniqueConstraint(columnNames = { "title" }) )
 public class Album {
     
     private int id;

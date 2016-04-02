@@ -16,18 +16,18 @@ public class SearchController {
     @Autowired
     private Dao dao;
     
-    @RequestMapping(value = "/allusers", method = RequestMethod.GET)
+    @RequestMapping(value = "/users", method = RequestMethod.GET)
     public List<User> getUsers() {
         return dao.getAllUsers();
     }
     
-    @RequestMapping(value = "/allalbums", method = RequestMethod.GET)
+    @RequestMapping(value = "/albums", method = RequestMethod.GET)
     public List<Album> getAlbums() {
         return dao.getAllAlbums();
     }
     
     
-    @RequestMapping(value = "/album/{title}", method = RequestMethod.GET)
+    @RequestMapping(value = "/albums/{title}", method = RequestMethod.GET)
     public Album findAlbum(@PathVariable String title) {
         return dao.getAlbumByTitle(title);
     }

@@ -1,7 +1,8 @@
-angular.module('hicollege_webapp').controller('user_ctrl', function ($scope, $http, $log) {
+angular.module('hicollege_webapp').controller('user_ctrl', function ($scope, $http, $log, albumService) {
 	
 	$scope.displaySuccess = false;
 	$scope.displayFail = false;
+	$scope.albumService = albumService;
 	
 	$scope.addUser = function () {
     	$http({

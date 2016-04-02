@@ -1,4 +1,4 @@
-angular.module('hicollege_webapp').controller('album_ctrl', function ($scope, $http, $log) {
+angular.module('hicollege_webapp').controller('album_ctrl', function ($scope, $http, $log, albumService) {
 	
 	$scope.displaySuccess = false;
 	$scope.displayFail = false;

@@ -8,6 +8,7 @@
 <script src="/resources/js/angular.min.js"></script>
 <script src="/resources/js/bootstrap.min.js"></script>
 <script src="/resources/angular_controllers/main.js"></script>
+<script src="/resources/angular_services/services.js"></script>
 <script src="/resources/angular_controllers/albumController.js"></script>
 <script src="/resources/angular_controllers/userController.js"></script>
 <link href="/resources/css/bootstrap.min.css" rel="stylesheet" media="screen">
@@ -47,7 +48,7 @@
 		   	<tbody >
 		 		<td>Username</td> <td>Age</td> <td>Email</td> <td>Albums</td> <td> </td>
 				<tr ng-repeat='usr in users'>
-			 		<td>{{usr.name}}</td> <td>{{usr.age}}</td> <td>{{usr.email}}</td> <td>{{usr.albums}}</td> <td> <button type="button" class="btn btn-danger" ng-click="deleteUser(usr.name)"> Delete user </button> </td>
+			 		<td>{{usr.name}}</td> <td>{{usr.age}}</td> <td>{{usr.email}}</td> <td>{{albumService.test(usr.albums)}}</td> <td> <button type="button" class="btn btn-danger" ng-click="deleteUser(usr.name)"> Delete user </button> </td>
 			 	</tr>
 			</tbody>
 		</table>

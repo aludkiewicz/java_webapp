@@ -88,11 +88,11 @@ public class Dao {
     @Transactional
     public List<User> getAllUsers() {
         @SuppressWarnings("unchecked")
-        List<User> allAlbums = (List<User>)sessionFactory
+        List<User> users = (List<User>)sessionFactory
             .getCurrentSession()
             .createQuery("from User")
             .list();
-        return allAlbums;
+        return users;
     }
 
     @Transactional

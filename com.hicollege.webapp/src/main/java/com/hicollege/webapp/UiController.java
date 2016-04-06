@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.*;
 
 /**
  * Controller returning the UIs
- *
  */
 @Controller
 @RequestMapping(value = "/ui", method = RequestMethod.GET)
